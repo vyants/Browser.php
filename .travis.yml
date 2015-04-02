@@ -7,7 +7,7 @@ php:
   - 5.3
 
 before_script:
-	- composer install
+  - composer install
 
 script:
-	- phpunit --configuration phpunit.xml.dist
+  - phpunit --configuration phpunit.xml.dist
