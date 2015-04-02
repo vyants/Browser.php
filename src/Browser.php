@@ -115,30 +115,13 @@ class Browser
 
     public function __construct($userAgent = "")
     {
-        $this->reset();
         if ($userAgent != "") {
-            $this->setUserAgent($userAgent);
+            $this->_agent = $userAgent;
         } else {
-            $this->determine();
+            $this->_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : "";
         }
-    }
-
-    /**
-     * Reset all properties
-     */
-    public function reset()
-    {
-        $this->_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : "";
-        $this->_browser_name = self::BROWSER_UNKNOWN;
-        $this->_version = self::VERSION_UNKNOWN;
-        $this->_platform = self::PLATFORM_UNKNOWN;
-        $this->_os = self::OPERATING_SYSTEM_UNKNOWN;
-        $this->_is_aol = false;
-        $this->_is_mobile = false;
-        $this->_is_tablet = false;
-        $this->_is_robot = false;
-        $this->_is_facebook = false;
-        $this->_aol_version = self::VERSION_UNKNOWN;
+        
+        $this->determine();
     }
 
     /**
@@ -320,17 +303,6 @@ class Browser
     public function getUserAgent()
     {
         return $this->_agent;
-    }
-
-    /**
-     * Set the user agent value (the construction will use the HTTP header value - this will overwrite it)
-     * @param string $agent_string The value for the User Agent
-     */
-    public function setUserAgent($agent_string)
-    {
-        $this->reset();
-        $this->_agent = $agent_string;
-        $this->determine();
     }
 
     /**
