@@ -35,6 +35,8 @@
  *
  */
 
+namespace MASNathan\Browser;
+
 class Browser
 {
     private $_agent = '';
@@ -111,7 +113,7 @@ class Browser
     const PLATFORM_WINDOWS_CE  = 'Windows CE';
 
 
-    public function Browser($userAgent = "")
+    public function __construct($userAgent = "")
     {
         $this->reset();
         if ($userAgent != "") {

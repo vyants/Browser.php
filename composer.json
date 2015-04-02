@@ -1,7 +1,11 @@
 {
     "name": "masnathan/browser.php",
     "description": "",
-    "keywords": ["browser", "user agent", "detection"],
+    "keywords": [
+        "browser",
+        "user agent",
+        "detection"
+    ],
     "homepage": "http://chrisschuld.com/projects/browser-php-detecting-a-users-browser-from-php.html",
     "license": "MIT",
     "authors": [
@@ -18,6 +22,14 @@
         }
     ],
     "autoload": {
-        "files": ["lib/Browser.php"]
+        "psr-4": {
+            "MASNathan\\Browser\\": "src/"
+        }
+    },
+    "require": {
+        "gemabit/string": "dev-revamp"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "~2.6"
     }
 }

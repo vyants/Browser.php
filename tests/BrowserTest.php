@@ -1,4 +1,7 @@
 <?php
+
+use MASNathan\Browser\Browser;
+
 /**
  * @covers Browser
  */
