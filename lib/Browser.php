@@ -1070,7 +1070,13 @@ class Browser
     {
         if (stripos($this->_agent, 'amaya') !== false) {
             $aresult = explode('/', stristr($this->_agent, 'Amaya'));
-            if (isset($aresult[1])) {
+
+            // This handles old versions
+            if (isset($aresult[1]) && strpos($aresult[1], 'amaya') === (strlen($aresult[1]) - 5)) {
+                $this->setVersion($aresult[2]);
+                $this->setBrowser(self::BROWSER_AMAYA);
+                return true;
+            } elseif (isset($aresult[1])) {
                 $aversion = explode(' ', $aresult[1]);
                 $this->setVersion($aversion[0]);
                 $this->setBrowser(self::BROWSER_AMAYA);
