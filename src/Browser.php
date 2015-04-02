@@ -39,17 +39,17 @@ namespace MASNathan\Browser;
 
 class Browser
 {
-    private $_agent = '';
-    private $_browser_name = '';
-    private $_version = '';
-    private $_platform = '';
-    private $_os = '';
-    private $_is_aol = false;
-    private $_is_mobile = false;
-    private $_is_tablet = false;
-    private $_is_robot = false;
-    private $_is_facebook = false;
-    private $_aol_version = '';
+    protected $_agent;
+    protected $_browser_name = self::BROWSER_UNKNOWN;
+    protected $_version = self::VERSION_UNKNOWN;
+    protected $_platform = self::PLATFORM_UNKNOWN;
+    protected $_os = self::OPERATING_SYSTEM_UNKNOWN;
+    protected $_is_aol = false;
+    protected $_is_mobile = false;
+    protected $_is_tablet = false;
+    protected $_is_robot = false;
+    protected $_is_facebook = false;
+    protected $_aol_version = self::VERSION_UNKNOWN;
 
     const BROWSER_UNKNOWN          = 'unknown';
     const VERSION_UNKNOWN          = 'unknown';
