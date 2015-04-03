@@ -1045,7 +1045,7 @@ class Browser
             return false;
         }
 
-        $tmp = explode('/', stristr($this->userAgent, 'Amaya'));
+        $tmp = explode('/', stristr($this->userAgent, 'amaya'));
         
         if (!isset($tmp[1])) {
             return false;
@@ -1207,23 +1207,25 @@ class Browser
      */
     protected function checkBrowserAndroid()
     {
-        if (stripos($this->_agent, 'Android') !== false) {
-            $aresult = explode(' ', stristr($this->_agent, 'Android'));
-            if (isset($aresult[1])) {
-                $aversion = explode(' ', $aresult[1]);
-                $this->setVersion($aversion[0]);
-            } else {
-                $this->setVersion(self::VERSION_UNKNOWN);
-            }
-            if (stripos($this->_agent, 'Mobile') !== false) {
-                $this->setMobile(true);
-            } else {
-                $this->setTablet(true);
-            }
-            $this->setBrowser(self::BROWSER_ANDROID);
-            return true;
+        if (!$this->userAgent->contains('android')) {
+            return false;
         }
-        return false;
+
+        $tmp = explode(' ', stristr($this->userAgent, 'android'));
+
+        if (isset($tmp[1])) {
+            $version = explode(' ', $tmp[1]);
+            $this->setVersion(reset($version));
+        }
+
+        if ($this->userAgent->contains('mobile')) {
+            $this->setMobile(true);
+        } else {
+            $this->setTablet(true);
+        }
+
+        $this->setBrowser(self::BROWSER_ANDROID);
+        return true;
     }
 
     /**
