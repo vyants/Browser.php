@@ -44,7 +44,7 @@ class Browser
     protected $userAgent;
     protected $originalUserAgentString;
     protected $_browser_name = self::BROWSER_UNKNOWN;
-    protected $_version = self::VERSION_UNKNOWN;
+    protected $browserVersion = self::VERSION_UNKNOWN;
     protected $_platform = self::PLATFORM_UNKNOWN;
     protected $_os = self::OPERATING_SYSTEM_UNKNOWN;
     protected $_is_aol = false;
@@ -197,7 +197,7 @@ class Browser
      */
     public function getVersion()
     {
-        return $this->_version;
+        return $this->browserVersion;
     }
 
     /**
@@ -206,7 +206,7 @@ class Browser
      */
     public function setVersion($version)
     {
-        $this->_version = preg_replace('/[^0-9,.,a-z,A-Z-]/', '', $version);
+        $this->browserVersion = preg_replace('/[^0-9,.,a-z,A-Z-]/', '', $version);
     }
 
     /**
