@@ -36,10 +36,13 @@
  */
 
 namespace MASNathan\Browser;
+use Gemabit\String\String as _;
 
 class Browser
 {
     protected $_agent;
+    protected $userAgent;
+    protected $originalUserAgentString;
     protected $_browser_name = self::BROWSER_UNKNOWN;
     protected $_version = self::VERSION_UNKNOWN;
     protected $_platform = self::PLATFORM_UNKNOWN;
@@ -120,8 +123,26 @@ class Browser
         } else {
             $this->_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : "";
         }
-        
-        $this->determine();
+
+        $this->originalUserAgentString = $this->_agent;
+        $this->userAgent = new _($this->originalUserAgentString);
+
+        $this->userAgent->toLower();
+
+        $this->checkPlatform();
+        $this->checkBrowsers();
+        $this->checkForAol();
+    }
+
+    /**
+     * Returns a formatted string with a summary of the details of the browser.
+     * @return string formatted string with a summary of the browser
+     */
+    public function __toString()
+    {
+        $template = new _('<b>Browser Name:</b> {0}<br /><b>Browser Version:</b> {1}<br /><b>Browser User Agent String:</b> {2}<br /><b>Platform:</b> {3}<br />');
+
+        return $template->format($this->getBrowser(), $this->getVersion(), $this->getUserAgent(), $this->getPlatform())->toString();
     }
 
     /**
@@ -129,7 +150,7 @@ class Browser
      * @param string $browserName
      * @return bool True if the browser is the specified browser
      */
-    function isBrowser($browserName)
+    public function isBrowser($browserName)
     {
         return (0 == strcasecmp($this->_browser_name, trim($browserName)));
     }
@@ -302,7 +323,7 @@ class Browser
      */
     public function getUserAgent()
     {
-        return $this->_agent;
+        return $this->originalUserAgentString;
     }
 
     /**
@@ -313,28 +334,6 @@ class Browser
     public function isChromeFrame()
     {
         return (strpos($this->_agent, "chromeframe") !== false);
-    }
-
-    /**
-     * Returns a formatted string with a summary of the details of the browser.
-     * @return string formatted string with a summary of the browser
-     */
-    public function __toString()
-    {
-        return "<strong>Browser Name:</strong> {$this->getBrowser()}<br/>\n" .
-        "<strong>Browser Version:</strong> {$this->getVersion()}<br/>\n" .
-        "<strong>Browser User Agent String:</strong> {$this->getUserAgent()}<br/>\n" .
-        "<strong>Platform:</strong> {$this->getPlatform()}<br/>";
-    }
-
-    /**
-     * Protected routine to calculate and determine what the browser is in use (including platform)
-     */
-    protected function determine()
-    {
-        $this->checkPlatform();
-        $this->checkBrowsers();
-        $this->checkForAol();
     }
 
     /**
@@ -1042,22 +1041,28 @@ class Browser
      */
     protected function checkBrowserAmaya()
     {
-        if (stripos($this->_agent, 'amaya') !== false) {
-            $aresult = explode('/', stristr($this->_agent, 'Amaya'));
-
-            // This handles old versions
-            if (isset($aresult[1]) && strpos($aresult[1], 'amaya') === (strlen($aresult[1]) - 5)) {
-                $this->setVersion($aresult[2]);
-                $this->setBrowser(self::BROWSER_AMAYA);
-                return true;
-            } elseif (isset($aresult[1])) {
-                $aversion = explode(' ', $aresult[1]);
-                $this->setVersion($aversion[0]);
-                $this->setBrowser(self::BROWSER_AMAYA);
-                return true;
-            }
+        if (!$this->userAgent->contains('amaya')) {
+            return false;
         }
-        return false;
+
+        $tmp = explode('/', stristr($this->userAgent, 'Amaya'));
+        
+        if (!isset($tmp[1])) {
+            return false;
+        }
+
+        $middleString = new _($tmp[1]);
+
+        // This handles old versions
+        if ($middleString->endsWith('amaya')) {
+            $this->setVersion($tmp[2]);
+        } else {
+            $versionParts = $middleString->explode(' ');
+            $this->setVersion(reset($versionParts));
+        }
+
+        $this->setBrowser(self::BROWSER_AMAYA);
+        return true;
     }
 
     /**
