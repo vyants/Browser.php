@@ -534,7 +534,16 @@ class BrowserTest extends PHPUnit_Framework_TestCase
             array("Mozilla/5.0 (X11; U; Linux i686; pl-PL; rv:1.9.0.6) Gecko/2009020911", Browser::BROWSER_MOZILLA, '1.9.0.6'),
             array("Mozilla/5.0 (X11; U; Linux i686; en; rv:1.9.0.6) Gecko/20080528", Browser::BROWSER_MOZILLA, '1.9.0.6'),
             array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.6) Gecko/2009020409", Browser::BROWSER_MOZILLA, '1.9.0.6'),
-
+            // MSN Browser
+            // MSN Bot
+            array("msnbot/2.1", Browser::BROWSER_MSNBOT, '2.1'),
+            array("msnbot/2.0b", Browser::BROWSER_MSNBOT, '2.0b'),
+            array("msnbot/1.1 (+http://search.msn.com/msnbot.htm)", Browser::BROWSER_MSNBOT, '1.1'),
+            array("msnbot/1.1", Browser::BROWSER_MSNBOT, '1.1'),
+            array("msnbot/1.0 (+http://search.msn.com/msnbot.htm)", Browser::BROWSER_MSNBOT, '1.0'),
+            array("msnbot/0.11 ( http://search.msn.com/msnbot.htm)", Browser::BROWSER_MSNBOT, '0.11'),
+            array("msnbot/0.9 (+http://search.msn.com/msnbot.htm)", Browser::BROWSER_MSNBOT, '0.9'),
+            array("MSNBOT/0.1 (http://search.msn.com/msnbot.htm)", Browser::BROWSER_MSNBOT, '0.1'),
 
             // Wget
             array("Wget/1.16 (darwin14.0.0)", Browser::BROWSER_WGET, '1.16'),
