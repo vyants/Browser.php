@@ -403,6 +403,28 @@ class Browser
     }
 
     /**
+     * Determine if the browser is Amaya or not (last updated 2.0.0)
+     * @return boolean True if the browser is Amaya otherwise false
+     */
+    protected function checkBrowserAmaya()
+    {
+        if (!$this->userAgent->contains('amaya')) {
+            return false;
+        }
+
+        preg_match_all('/amaya\/(.+?)(?=\s|$)/s', $this->_agent, $versions);
+        $versions = end($versions);
+
+        if (!count($versions)) {
+            return false;
+        }
+
+        $this->setVersion(end($versions));
+        $this->setBrowser(self::BROWSER_AMAYA);
+        return true;
+    }
+    
+    /**
      * Determine if the user is using a BlackBerry (last updated 1.7)
      * @return boolean True if the browser is the BlackBerry browser otherwise false
      */
@@ -1029,36 +1051,6 @@ class Browser
             return true;
         }
         return false;
-    }
-
-    /**
-     * Determine if the browser is Amaya or not (last updated 1.7)
-     * @return boolean True if the browser is Amaya otherwise false
-     */
-    protected function checkBrowserAmaya()
-    {
-        if (!$this->userAgent->contains('amaya')) {
-            return false;
-        }
-
-        $tmp = explode('/', stristr($this->userAgent, 'amaya'));
-        
-        if (!isset($tmp[1])) {
-            return false;
-        }
-
-        $middleString = new _($tmp[1]);
-
-        // This handles old versions
-        if ($middleString->endsWith('amaya')) {
-            $this->setVersion($tmp[2]);
-        } else {
-            $versionParts = $middleString->explode(' ');
-            $this->setVersion(reset($versionParts));
-        }
-
-        $this->setBrowser(self::BROWSER_AMAYA);
-        return true;
     }
 
     /**
