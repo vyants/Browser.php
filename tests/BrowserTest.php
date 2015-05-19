@@ -257,6 +257,11 @@ class BrowserTest extends PHPUnit_Framework_TestCase
             array("Mozilla/5.0 Galeon/1.2.5 (X11; Linux i686; U;) Gecko/0", Browser::BROWSER_GALEON, '1.2.5'),
             array("Mozilla/5.0 Galeon/1.2.5 (X11; Linux i586; U;) Gecko/20020623 Debian/1.2.5-0.woody.1", Browser::BROWSER_GALEON, '1.2.5'),
             array("Mozilla/5.0 Galeon/1.0.3 (X11; Linux i686; U;) Gecko/0", Browser::BROWSER_GALEON, '1.0.3'),
+            // GoogleBot
+            array("Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)", Browser::BROWSER_GOOGLEBOT, '2.1'),
+            array("Googlebot/2.1 (+http://www.googlebot.com/bot.html)", Browser::BROWSER_GOOGLEBOT, '2.1'),
+            array("Googlebot/2.1 (+http://www.google.com/bot.html)", Browser::BROWSER_GOOGLEBOT, '2.1'),
+            
 
             // Internet Explorer
             array("Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko", Browser::BROWSER_IE, '11.0'),
