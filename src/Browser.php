@@ -312,9 +312,9 @@ class Browser
      * Set the Browser to be a Facebook request
      * @param boolean $value is the browser a robot or not
      */
-    protected function setFacebook($value = true) 
-    { 
-        $this->_is_facebook = $value; 
+    protected function setFacebook($value = true)
+    {
+        $this->_is_facebook = $value;
     }
 
     /**
@@ -381,6 +381,8 @@ class Browser
             // check for facebook external hit when loading URL
             $this->checkFacebookExternalHit() ||
 
+            // the iCab Browser needs to be checked before Safari due to it's later versions
+            $this->checkBrowserIcab() ||
             // WebKit base check (post mobile and others)
             $this->checkBrowserSafari() ||
 
@@ -388,13 +390,12 @@ class Browser
             $this->checkBrowserNetPositive() ||
             $this->checkBrowserFirebird() ||
             $this->checkBrowserKonqueror() ||
-            $this->checkBrowserIcab() ||
             $this->checkBrowserPhoenix() ||
             $this->checkBrowserAmaya() ||
             $this->checkBrowserLynx() ||
             $this->checkBrowserShiretoko() ||
             $this->checkBrowserIceCat() ||
-            $this->checkBrowserIceweasel() || 
+            $this->checkBrowserIceweasel() ||
             $this->checkBrowserW3CValidator() ||
             $this->checkBrowserCurl() ||
             $this->checkBrowserWget() ||
@@ -556,14 +557,12 @@ class Browser
      */
     protected function checkBrowserInternetExplorer()
     {
-    //  Test for IE11
-    if( stripos($this->_agent,'Trident/7.0; rv:11.0') !== false ) {
-        $this->setBrowser(self::BROWSER_IE);
-        $this->setVersion('11.0');
-        return true;
-    }
-        // Test for v1 - v1.5 IE
-        else if (stripos($this->_agent, 'microsoft internet explorer') !== false) {
+        //  Test for IE11
+        if (stripos($this->_agent, 'Trident/7.0; rv:11.0') !== false) {
+            $this->setBrowser(self::BROWSER_IE);
+            $this->setVersion('11.0');
+            return true;
+        } else if (stripos($this->_agent, 'microsoft internet explorer') !== false) { // Test for v1 - v1.5 IE
             $this->setBrowser(self::BROWSER_IE);
             $this->setVersion('1.0');
             $aresult = stristr($this->_agent, '/');
@@ -586,14 +585,14 @@ class Browser
             if (isset($aresult[1])) {
                 $this->setBrowser(self::BROWSER_IE);
                 $this->setVersion(str_replace(array('(', ')', ';'), '', $aresult[1]));
-                if(stripos($this->_agent, 'IEMobile') !== false) {
+                if (stripos($this->_agent, 'IEMobile') !== false) {
                     $this->setBrowser(self::BROWSER_POCKET_IE);
                     $this->setMobile(true);
                 }
                 return true;
             }
         } // Test for versions > IE 10
-        else if(stripos($this->_agent, 'trident') !== false) {
+        else if (stripos($this->_agent, 'trident') !== false) {
             $this->setBrowser(self::BROWSER_IE);
             $result = explode('rv:', $this->_agent);
             if (isset($result[1])) {
