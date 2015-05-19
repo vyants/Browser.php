@@ -1,4 +1,5 @@
 tests/index.php
 
 vendor/
+bin/
 composer.lock
