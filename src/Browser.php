@@ -412,7 +412,7 @@ class Browser
             return false;
         }
 
-        preg_match_all('/amaya\/(.+?)(?=\s|$)/s', $this->_agent, $versions);
+        preg_match_all('/amaya\/(.+?)(?=\s|$)/s', $this->userAgent, $versions);
         $versions = end($versions);
 
         if (!count($versions)) {
@@ -423,7 +423,57 @@ class Browser
         $this->setBrowser(self::BROWSER_AMAYA);
         return true;
     }
+
+    /**
+     * Determine if the browser is Android or not (last updated 2.0.0)
+     * @return boolean True if the browser is Android otherwise false
+     */
+    protected function checkBrowserAndroid()
+    {
+        if (!$this->userAgent->contains('android')) {
+            return false;
+        }
+
+        $tmp = explode(' ', stristr($this->userAgent, 'android'));
+
+        if (isset($tmp[1])) {
+            $version = explode(' ', $tmp[1]);
+            $this->setVersion(reset($version));
+        }
+
+        if ($this->userAgent->contains('mobile')) {
+            $this->setMobile(true);
+        } else {
+            $this->setTablet(true);
+        }
+
+        $this->setBrowser(self::BROWSER_ANDROID);
+        return true;
+    }
     
+    /**
+     * Determine if the browser is the BingBot or not (last updated 1.9)
+     * @return boolean True if the browser is the BingBot otherwise false
+     */
+    protected function checkBrowserBingBot()
+    {
+        if (!$this->userAgent->contains('bingbot')) {
+            return false;
+        }
+
+        preg_match_all('/bingbot\/(.+?)(?=\s|$)/s', $this->userAgent, $versions);
+        $versions = end($versions);
+
+        if (!count($versions)) {
+            return false;
+        }
+
+        $this->setVersion(reset($versions));
+        $this->setBrowser(self::BROWSER_BINGBOT);
+        $this->setRobot(true);
+        return true;
+    }
+
     /**
      * Determine if the user is using a BlackBerry (last updated 1.7)
      * @return boolean True if the browser is the BlackBerry browser otherwise false
@@ -494,25 +544,6 @@ class Browser
                 $aversion = explode(" ", $aresult[1]);
                 $this->setVersion(str_replace(";", "", $aversion[0]));
                 $this->_browser_name = self::BROWSER_MSNBOT;
-                $this->setRobot(true);
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    /**
-     * Determine if the browser is the BingBot or not (last updated 1.9)
-     * @return boolean True if the browser is the BingBot otherwise false
-     */
-    protected function checkBrowserBingBot()
-    {
-        if (stripos($this->_agent, "bingbot") !== false) {
-            $aresult = explode("/", stristr($this->_agent, "bingbot"));
-            if (isset($aresult[1])) {
-                $aversion = explode(" ", $aresult[1]);
-                $this->setVersion(str_replace(";", "", $aversion[0]));
-                $this->_browser_name = self::BROWSER_BINGBOT;
                 $this->setRobot(true);
                 return true;
             }
@@ -1183,33 +1214,6 @@ class Browser
             return true;
         }
         return false;
-    }
-
-    /**
-     * Determine if the browser is Android or not
-     * @return boolean True if the browser is Android otherwise false
-     */
-    protected function checkBrowserAndroid()
-    {
-        if (!$this->userAgent->contains('android')) {
-            return false;
-        }
-
-        $tmp = explode(' ', stristr($this->userAgent, 'android'));
-
-        if (isset($tmp[1])) {
-            $version = explode(' ', $tmp[1]);
-            $this->setVersion(reset($version));
-        }
-
-        if ($this->userAgent->contains('mobile')) {
-            $this->setMobile(true);
-        } else {
-            $this->setTablet(true);
-        }
-
-        $this->setBrowser(self::BROWSER_ANDROID);
-        return true;
     }
 
     /**
