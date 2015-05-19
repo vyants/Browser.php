@@ -267,8 +267,8 @@ class Browser
     * Is the browser from facebook?
     * @return boolean True if the browser is from facebook otherwise false
     */
-    public function isFacebook() 
-    { 
+    public function isFacebook()
+    {
         return $this->_is_facebook;
     }
 
@@ -343,25 +343,24 @@ class Browser
     protected function checkBrowsers()
     {
         return (
-            // well-known, well-used
-            // Special Notes:
-            // (1) Opera must be checked before FireFox due to the odd
-            //     user agents used in some older versions of Opera
-            // (2) WebTV is strapped onto Internet Explorer so we must
-            //     check for WebTV before IE
-            // (3) (deprecated) Galeon is based on Firefox and needs to be
-            //     tested before Firefox is tested
-            // (4) OmniWeb is based on Safari so OmniWeb check must occur
-            //     before Safari
-            // (5) Netscape 9+ is based on Firefox so Netscape checks
-            //     before FireFox are necessary
+            // WebTV is strapped onto Internet Explorer so we must check for WebTV before IE
             $this->checkBrowserWebTv() ||
             $this->checkBrowserInternetExplorer() ||
+            // Opera must be checked before FireFox due to the odd user agents used in
+            // some older versions of Opera
             $this->checkBrowserOpera() ||
+            // (deprecated) Galeon is based on Firefox and needs to be tested before
+            // Firefox is tested
             $this->checkBrowserGaleon() ||
+            // Netscape 9+ is based on Firefox so Netscape checks before FireFox are necessary
             $this->checkBrowserNetscapeNavigator9Plus() ||
+            // IceCat is a free software rebranding of the Mozilla Firefox web browser
+            // distributed by the GNU Project. That way it needs to be tested before
+            // Firefox is tested
+            $this->checkBrowserIceCat() ||
             $this->checkBrowserFirefox() ||
             $this->checkBrowserChrome() ||
+            // OmniWeb is based on Safari so OmniWeb check must occur before Safari
             $this->checkBrowserOmniWeb() ||
 
             // common mobile
@@ -394,7 +393,6 @@ class Browser
             $this->checkBrowserAmaya() ||
             $this->checkBrowserLynx() ||
             $this->checkBrowserShiretoko() ||
-            $this->checkBrowserIceCat() ||
             $this->checkBrowserIceweasel() ||
             $this->checkBrowserW3CValidator() ||
             $this->checkBrowserCurl() ||

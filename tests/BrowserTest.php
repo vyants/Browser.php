@@ -304,7 +304,22 @@ class BrowserTest extends PHPUnit_Framework_TestCase
             array("Mozilla/4.5 (compatible; iCab 2.9.1; Macintosh; U; PPC)", Browser::BROWSER_ICAB, '2.9.1'),
             array("iCab/2.9.1 (Macintosh; U; PPC)", Browser::BROWSER_ICAB, '2.9.1'),
             array("Mozilla/4.5 (compatible; iCab 2.8.1; Macintosh; I; PPC)", Browser::BROWSER_ICAB, '2.8.1'),
-            
+            // IceCat
+            array("Mozilla/5.0 (X11; Linux x86_64; rv:17.0) Gecko/20121201 icecat/17.0.1", Browser::BROWSER_ICECAT, '17.0.1'),
+            array("Mozilla/5.0 (X11; Linux i686; rv:7.0.1) Gecko/20111106 IceCat/7.0.1", Browser::BROWSER_ICECAT, '7.0.1'),
+            array("Mozilla/5.0 (X11; U; Linux sparc64; es-PY; rv:5.0) Gecko/20100101 IceCat/5.0 (like Firefox/5.0; Debian-6.0.1)", Browser::BROWSER_ICECAT, '5.0'),
+            array("Mozilla/5.0 (X11; Linux i686; rv:2.0b8) Gecko/20101227 IceCat/4.0b8", Browser::BROWSER_ICECAT, '4.0b8'),
+            array("Mozilla/5.0 (X11; U; Linux x86_64; fr; rv:1.9.2.13) Gecko/20101203 IceCat/3.6.13-g1", Browser::BROWSER_ICECAT, '3.6.13-g1'),
+            array("Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.13) Gecko/20101214 IceCat/3.6.13 (like Firefox/3.6.13)", Browser::BROWSER_ICECAT, '3.6.13'),
+            array("Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.2.13) Gecko/20101221 IceCat/3.6.13 (like Firefox/3.6.13) (Zenwalk GNU Linux)", Browser::BROWSER_ICECAT, '3.6.13'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 6.0; it; rv:1.9.2.12) Gecko/20101114 IceCat/3.6.12 (like Firefox/3.6.12)", Browser::BROWSER_ICECAT, '3.6.12'),
+            array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092921 IceCat/3.0.3-g1", Browser::BROWSER_ICECAT, '3.0.3-g1'),
+            array("Mozilla/5.0 (X11; U; Linux i686; en-CA; rv:1.9.0.3) Gecko/2008092921 IceCat/3.0.3-g1", Browser::BROWSER_ICECAT, '3.0.3-g1'),
+            array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.2) Gecko/2008100722 IceCat/3.0.2-g1", Browser::BROWSER_ICECAT, '3.0.2-g1'),
+            array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008072716 IceCat/3.0.1-g1", Browser::BROWSER_ICECAT, '3.0.1-g1'),
+            array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9) Gecko/2008061920 IceCat/3.0-g1", Browser::BROWSER_ICECAT, '3.0-g1'),
+            array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.11) Gecko/20071203 IceCat/2.0.0.11-g1", Browser::BROWSER_ICECAT, '2.0.0.11-g1'),
+
 
             // Internet Explorer
             array("Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko", Browser::BROWSER_IE, '11.0'),
