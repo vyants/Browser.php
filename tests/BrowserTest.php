@@ -517,7 +517,24 @@ class BrowserTest extends PHPUnit_Framework_TestCase
             array("Lynx/2.8.6rel.4 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/1.6.3", Browser::BROWSER_LYNX, '2.8.6rel.4'),
             array("Lynx/2.8.6rel.4 libwww-FM/2.14", Browser::BROWSER_LYNX, '2.8.6rel.4'),
             array("Lynx/2.8.6dev.11 libwww-FM/2.14", Browser::BROWSER_LYNX, '2.8.6dev.11'),
-            
+            // Mozilla
+            array("Mozilla/5.0 (Windows; U; Windows NT 6.1; rv:2.2) Gecko/20110201", Browser::BROWSER_MOZILLA, '2.2'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 6.1; it; rv:2.0b4) Gecko/20100818", Browser::BROWSER_MOZILLA, '2.0b4'),
+            array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9a3pre) Gecko/20070330", Browser::BROWSER_MOZILLA, '1.9a3pre'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.9.2a1pre) Gecko", Browser::BROWSER_MOZILLA, '1.9.2a1pre'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 5.1; pl; rv:1.9.2.3) Gecko/20100401 Lightningquail/3.6.3", Browser::BROWSER_MOZILLA, '1.9.2.3'),
+            array("Mozilla/5.0 (X11; ; Linux i686; rv:1.9.2.20) Gecko/20110805", Browser::BROWSER_MOZILLA, '1.9.2.20'),
+            array("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.13; ) Gecko/20101203", Browser::BROWSER_MOZILLA, '1.9.2.13'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.1b3) Gecko/20090305", Browser::BROWSER_MOZILLA, '1.9.1b3'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-TW; rv:1.9.0.9) Gecko/2009040821", Browser::BROWSER_MOZILLA, '1.9.0.9'),
+            array("Mozilla/5.0 (X11; U; Linux i686; ru; rv:1.9.0.8) Gecko/2009032711", Browser::BROWSER_MOZILLA, '1.9.0.8'),
+            array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.7) Gecko/2009032803", Browser::BROWSER_MOZILLA, '1.9.0.7'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.9.0.7) Gecko/2009021910 MEGAUPLOAD 1.0", Browser::BROWSER_MOZILLA, '1.9.0.7'),
+            array("Mozilla/5.0 (Windows; U; BeOS; en-US; rv:1.9.0.7) Gecko/2009021910", Browser::BROWSER_MOZILLA, '1.9.0.7'),
+            array("Mozilla/5.0 (X11; U; Linux i686; pl-PL; rv:1.9.0.6) Gecko/2009020911", Browser::BROWSER_MOZILLA, '1.9.0.6'),
+            array("Mozilla/5.0 (X11; U; Linux i686; en; rv:1.9.0.6) Gecko/20080528", Browser::BROWSER_MOZILLA, '1.9.0.6'),
+            array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.6) Gecko/2009020409", Browser::BROWSER_MOZILLA, '1.9.0.6'),
+
 
             // Wget
             array("Wget/1.16 (darwin14.0.0)", Browser::BROWSER_WGET, '1.16'),
