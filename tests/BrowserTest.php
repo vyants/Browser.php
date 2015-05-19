@@ -501,6 +501,23 @@ class BrowserTest extends PHPUnit_Framework_TestCase
             array("Mozilla/5.0 (compatible; Konqueror/3.2; Linux) (KHTML, like Gecko)", Browser::BROWSER_KONQUEROR, '3.2'),
             array("Mozilla/5.0 (compatible; Konqueror/3.2; Linux 2.6.2) (KHTML, like Gecko)", Browser::BROWSER_KONQUEROR, '3.2'),
             array("Mozilla/5.0 (compatible; Konqueror/3.2; FreeBSD) (KHTML, like Gecko)", Browser::BROWSER_KONQUEROR, '3.2'),
+            // Lynx
+            array("Lynx/2.8.8dev.3 libwww-FM/2.14 SSL-MM/1.4.1", Browser::BROWSER_LYNX, '2.8.8dev.3'),
+            array("Lynx/2.8.7rel.2 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/1.0.0a", Browser::BROWSER_LYNX, '2.8.7rel.2'),
+            array("Lynx/2.8.7pre.5 libwww-FM/2.14 SSL-MM/1.4.1", Browser::BROWSER_LYNX, '2.8.7pre.5'),
+            array("Lynx/2.8.7dev.9 libwww-FM/2.14", Browser::BROWSER_LYNX, '2.8.7dev.9'),
+            array("Lynx/2.8.7dev.4 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/0.9.8d", Browser::BROWSER_LYNX, '2.8.7dev.4'),
+            array("Lynx/2.8.6rel.5 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/1.0.0a", Browser::BROWSER_LYNX, '2.8.6rel.5'),
+            array("Lynx/2.8.6rel.5 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/0.9.8g", Browser::BROWSER_LYNX, '2.8.6rel.5'),
+            array("Lynx/2.8.6rel.5 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/0.9.8b", Browser::BROWSER_LYNX, '2.8.6rel.5'),
+            array("Lynx/2.8.6rel.5 libwww-FM/2.14", Browser::BROWSER_LYNX, '2.8.6rel.5'),
+            array("Lynx/2.8.6rel.4 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/0.9.8k", Browser::BROWSER_LYNX, '2.8.6rel.4'),
+            array("Lynx/2.8.6rel.4 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/0.9.8g", Browser::BROWSER_LYNX, '2.8.6rel.4'),
+            array("Lynx/2.8.6rel.4 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/0.9.8d", Browser::BROWSER_LYNX, '2.8.6rel.4'),
+            array("Lynx/2.8.6rel.4 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/1.6.3", Browser::BROWSER_LYNX, '2.8.6rel.4'),
+            array("Lynx/2.8.6rel.4 libwww-FM/2.14", Browser::BROWSER_LYNX, '2.8.6rel.4'),
+            array("Lynx/2.8.6dev.11 libwww-FM/2.14", Browser::BROWSER_LYNX, '2.8.6dev.11'),
+            
 
             // Wget
             array("Wget/1.16 (darwin14.0.0)", Browser::BROWSER_WGET, '1.16'),
