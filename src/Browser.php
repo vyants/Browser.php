@@ -356,8 +356,9 @@ class Browser
             $this->checkBrowserNetscapeNavigator9Plus() ||
             // IceCat is a free software rebranding of the Mozilla Firefox web browser
             // distributed by the GNU Project. That way it needs to be tested before
-            // Firefox is tested
+            // Firefox is tested, same goes to Iceweasel
             $this->checkBrowserIceCat() ||
+            $this->checkBrowserIceweasel() ||
             $this->checkBrowserFirefox() ||
             $this->checkBrowserChrome() ||
             // OmniWeb is based on Safari so OmniWeb check must occur before Safari
@@ -393,7 +394,6 @@ class Browser
             $this->checkBrowserAmaya() ||
             $this->checkBrowserLynx() ||
             $this->checkBrowserShiretoko() ||
-            $this->checkBrowserIceweasel() ||
             $this->checkBrowserW3CValidator() ||
             $this->checkBrowserCurl() ||
             $this->checkBrowserWget() ||

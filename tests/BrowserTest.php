@@ -319,7 +319,23 @@ class BrowserTest extends PHPUnit_Framework_TestCase
             array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008072716 IceCat/3.0.1-g1", Browser::BROWSER_ICECAT, '3.0.1-g1'),
             array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9) Gecko/2008061920 IceCat/3.0-g1", Browser::BROWSER_ICECAT, '3.0-g1'),
             array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.11) Gecko/20071203 IceCat/2.0.0.11-g1", Browser::BROWSER_ICECAT, '2.0.0.11-g1'),
-
+            // Iceweasel
+            array("Mozilla/5.0 (X11; Linux x86_64; rv:17.0) Gecko/20121202 Firefox/17.0 Iceweasel/17.0.1", Browser::BROWSER_ICEWEASEL, '17.0.1'),
+            array("Mozilla/5.0 (X11; Linux x86_64; rv:15.0) Gecko/20100101 Firefox/15.0.1 Iceweasel/15.0.1", Browser::BROWSER_ICEWEASEL, '15.0.1'),
+            array("Mozilla/5.0 (X11; Linux i686; rv:15.0) Gecko/20100101 Firefox/15.0.1 Iceweasel/15.0.1", Browser::BROWSER_ICEWEASEL, '15.0.1'),
+            array("Mozilla/5.0 (X11; Linux x86_64; rv:15.0) Gecko/20120724 Debian Iceweasel/15.0", Browser::BROWSER_ICEWEASEL, '15.0'),
+            array("Mozilla/5.0 (X11; Linux x86_64; rv:15.0) Gecko/20100101 Firefox/15.0 Iceweasel/15.0", Browser::BROWSER_ICEWEASEL, '15.0'),
+            array("Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20120721 Debian Iceweasel/15.0", Browser::BROWSER_ICEWEASEL, '15.0'),
+            array("Mozilla/5.0 (X11; Linux i686; rv:15.0) Gecko/20100101 Firefox/15.0 Iceweasel/15.0", Browser::BROWSER_ICEWEASEL, '15.0'),
+            array("Mozilla/5.0 (X11; debian; Linux x86_64; rv:15.0) Gecko/20100101 Iceweasel/15.0", Browser::BROWSER_ICEWEASEL, '15.0'),
+            array("Mozilla/5.0 (X11; Linux x86_64; rv:14.0) Gecko/20100101 Firefox/14.0.1 Iceweasel/14.0.1", Browser::BROWSER_ICEWEASEL, '14.0.1'),
+            array("Mozilla/5.0 (X11; Linux i686; rv:14.0) Gecko/20100101 Firefox/14.0.1 Iceweasel/14.0.1", Browser::BROWSER_ICEWEASEL, '14.0.1'),
+            array("Mozilla/5.0 (X11; Linux x86_64; rv:14.0) Gecko/20100101 Firefox/14.0 Iceweasel/14.0", Browser::BROWSER_ICEWEASEL, '14.0'),
+            array("Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Debian Iceweasel/14.0", Browser::BROWSER_ICEWEASEL, '14.0'),
+            array("Mozilla/5.0 (X11; Linux i686; rv:14.0) Gecko/20100101 Firefox/14.0 Iceweasel/14.0", Browser::BROWSER_ICEWEASEL, '14.0'),
+            array("Mozilla/5.0 (X11; Linux x86_64; rv:13.0) Gecko/20100101 Firefox/13.0.1 Iceweasel/13.0.1", Browser::BROWSER_ICEWEASEL, '13.0.1'),
+            array("Mozilla/5.0 (X11; Linux i686; rv:13.0) Gecko/20100101 Firefox/13.0.1 Iceweasel/13.0.1", Browser::BROWSER_ICEWEASEL, '13.0.1'),
+            array("Mozilla/5.0 (X11; Linux x86_64; rv:13.0) Gecko/20100101 Firefox/13.0 Iceweasel/13.0", Browser::BROWSER_ICEWEASEL, '13.0'),
 
             // Internet Explorer
             array("Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko", Browser::BROWSER_IE, '11.0'),
