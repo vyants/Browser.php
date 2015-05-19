@@ -544,11 +544,56 @@ class BrowserTest extends PHPUnit_Framework_TestCase
             array("msnbot/0.11 ( http://search.msn.com/msnbot.htm)", Browser::BROWSER_MSNBOT, '0.11'),
             array("msnbot/0.9 (+http://search.msn.com/msnbot.htm)", Browser::BROWSER_MSNBOT, '0.9'),
             array("MSNBOT/0.1 (http://search.msn.com/msnbot.htm)", Browser::BROWSER_MSNBOT, '0.1'),
+            // NetPositive
+            array("Mozilla/3.0 (compatible; NetPositive/2.2.2; BeOS)", Browser::BROWSER_NETPOSITIVE, '2.2.2'),
+            array("Mozilla/3.0 (compatible; NetPositive/2.2)", Browser::BROWSER_NETPOSITIVE, '2.2'),
+            array("Mozilla/3.0 (compatible; NetPositive/2.1.1; BeOS)", Browser::BROWSER_NETPOSITIVE, '2.1.1'),
+            // Netscape Navigator
+            array("Mozilla/5.0 (Windows; U; Win 9x 4.90; SG; rv:1.9.2.4) Gecko/20101104 Netscape/9.1.0285", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.1.0285'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.8.1.8pre) Gecko/20070928 Firefox/2.0.0.7 Navigator/9.0RC1", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0RC1'),
+            array("Mozilla/5.0 (Windows; U; Win98; en-US; rv:1.8.1.8pre) Gecko/20070928 Firefox/2.0.0.7 Navigator/9.0RC1", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0RC1'),
+            array("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.8pre) Gecko/20071001 Firefox/2.0.0.7 Navigator/9.0RC1", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0RC1'),
+            array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.7pre) Gecko/20070815 Firefox/2.0.0.6 Navigator/9.0b3", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0b3'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US; rv:1.8.1.7pre) Gecko/20070815 Firefox/2.0.0.6 Navigator/9.0b3", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0b3'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.7pre) Gecko/20070815 Firefox/2.0.0.6 Navigator/9.0b3", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0b3'),
+            array("Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.8.1.7pre) Gecko/20070815 Firefox/2.0.0.6 Navigator/9.0b3", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0b3'),
+            array("Mozilla/5.0 (Windows; U; Windows 98; en-US; rv:1.8.1.5pre) Gecko/20070710 Firefox/2.0.0.4 Navigator/9.0b2", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0b2'),
+            array("Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.8.1.5pre) Gecko/20070710 Firefox/2.0.0.4 Navigator/9.0b2", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0b2'),
+            array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.12) Gecko/20080219 Firefox/2.0.0.12 Navigator/9.0.0.6", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.6'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.8.1.12) Gecko/20080219 Firefox/2.0.0.12 Navigator/9.0.0.6", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.6'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.12) Gecko/20080219 Firefox/2.0.0.12 Navigator/9.0.0.6", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.6'),
+            array("Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.8.1.12) Gecko/20080219 Firefox/2.0.0.12 Navigator/9.0.0.6", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.6'),
+            array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.11pre) Gecko/20071206 Firefox/2.0.0.11 Navigator/9.0.0.5", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.5'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.11pre) Gecko/20071206 Firefox/2.0.0.11 Navigator/9.0.0.5 GTB5", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.5'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.11pre) Gecko/20071206 Firefox/2.0.0.11 Navigator/9.0.0.5", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.5'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.8.1.11pre) Gecko/20071206 Firefox/2.0.0.11 Navigator/9.0.0.5", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.5'),
+            array("Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.8.1.11pre) Gecko/20071206 Firefox/2.0.0.11 Navigator/9.0.0.5", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.5'),
+            array("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.11pre) Gecko/20071206 Firefox/2.0.0.11 Navigator/9.0.0.5", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.5'),
+            array("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.10pre) Gecko/20071127 Firefox/2.0.0.10 Navigator/9.0.0.4", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.4'),
+            array("Mozilla/5.0 (X11; U; Linux i586; en-US; rv:1.8.1.9pre) Gecko/20071102 Firefox/2.0.0.9 Navigator/9.0.0.3", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.3'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.9pre) Gecko/20071102 Firefox/2.0.0.9 Navigator/9.0.0.3", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.3'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 5.0; fr; rv:1.8.1.9pre) Gecko/20071102 Firefox/2.0.0.9 Navigator/9.0.0.3", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.3'),
+            array("Mozilla/5.0 (Windows; U; Win98; en-US; rv:1.8.1.9pre) Gecko/20071102 Firefox/2.0.0.9 Navigator/9.0.0.3", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.3'),
+            array("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.9pre) Gecko/20071102 Firefox/2.0.0.9 Navigator/9.0.0.3", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.3'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.8.1.8pre) Gecko/20071019 Firefox/2.0.0.8 Navigator/9.0.0.1", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.1'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.8pre) Gecko/20071019 Firefox/2.0.0.8 Navigator/9.0.0.1", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.1'),
+            array("Mozilla/5.0 (Windows; U; Windows 98; en-US; rv:1.8.1.8pre) Gecko/20071019 Firefox/2.0.0.8 Navigator/9.0.0.1", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.1'),
+            array("Mozilla/5.0 (Windows; U; Win98; en-US; rv:1.8.1.8pre) Gecko/20071019 Firefox/2.0.0.8 Navigator/9.0.0.1", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.1'),
+            array("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.8pre) Gecko/20071019 Firefox/2.0.0.8 Navigator/9.0.0.1", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0.0.1'),
+            array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.8pre) Gecko/20071015 Firefox/2.0.0.7 Navigator/9.0", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0'),
+            array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.5) Gecko/20070321 Netscape/9.0", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0'),
+            array("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.8pre) Gecko/20071015 Firefox/2.0.0.7 Navigator/9.0", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0'),
+            array("Mozilla/5.0 (Windows; U; Win 9x 4.90; en-US; rv:1.8.1.8pre) Gecko/20071015 Firefox/2.0.0.7 Navigator/9.0", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0'),
+            array("Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.8.1.8pre) Gecko/20071015 Firefox/2.0.0.7 Navigator/9.0", Browser::BROWSER_NETSCAPE_NAVIGATOR, '9.0'),
+
 
             // Wget
+            array("Wget/1.9+cvs-stable (Red Hat modified)", Browser::BROWSER_WGET, '1.9cvs-stable'),
+            array("Wget/1.9.1", Browser::BROWSER_WGET, '1.9.1'),
+            array("Wget/1.9", Browser::BROWSER_WGET, '1.9'),
+            array("Wget/1.8.2", Browser::BROWSER_WGET, '1.8.2'),
             array("Wget/1.16 (darwin14.0.0)", Browser::BROWSER_WGET, '1.16'),
-            
-
+            array("Wget/1.15 (darwin13.0.2)", Browser::BROWSER_WGET, '1.15'),
         );
     }
 }
