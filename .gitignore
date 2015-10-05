@@ -1,4 +1,5 @@
 tests/index.php
+.idea/
 
 vendor/
 bin/
