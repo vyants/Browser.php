@@ -1,1 +1,6 @@
-.idea
+tests/index.php
+.idea/
+
+vendor/
+bin/
+composer.lock

@@ -1,6 +1,6 @@
 {
     "name": "masnathan/browser.php",
-    "description": "",
+    "description": "A PHP Class to detect a user's Browser",
     "keywords": ["browser", "user agent", "detection"],
     "homepage": "http://chrisschuld.com/projects/browser-php-detecting-a-users-browser-from-php.html",
     "license": "MIT",
@@ -14,10 +14,24 @@
         {
             "name": "André Filipe",
             "email": "andre.r.flip@gmail.com",
+            "homepage": "http://masnathan.com",
             "role": "Developer"
         }
     ],
     "autoload": {
-        "files": ["lib/Browser.php"]
+        "psr-4": {
+            "MASNathan\\Browser\\": "src/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "require": {
+        "php": ">=5.3",
+        "gemabit/string": "dev-master"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "~2.6",
+        "phpunit/phpunit": "~4.6"
     }
 }
