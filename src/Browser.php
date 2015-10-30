@@ -37,8 +37,6 @@
 
 namespace MASNathan\Browser;
 
-use Gemabit\String\String;
-
 class Browser
 {
     protected $userAgent;
@@ -123,9 +121,9 @@ class Browser
         }
 
         $this->originalUserAgentString = $userAgent;
-        $this->userAgent = new String($this->originalUserAgentString);
+        $this->userAgent = $this->originalUserAgentString;
 
-        $this->userAgent->toLower();
+        $this->userAgent = mb_strtolower($this->userAgent);
 
         $this->checkPlatform();
         $this->checkBrowsers();
@@ -138,9 +136,12 @@ class Browser
      */
     public function __toString()
     {
-        $template = new String('<b>Browser Name:</b> {0}<br /><b>Browser Version:</b> {1}<br /><b>Browser User Agent String:</b> {2}<br /><b>Platform:</b> {3}<br />');
-
-        return $template->format($this->getBrowser(), $this->getVersion(), $this->getUserAgent(), $this->getPlatform())->toString();
+        $template = '<b>Browser Name:</b> {0}<br /><b>Browser Version:</b> {1}<br /><b>Browser User Agent String:</b> {2}<br /><b>Platform:</b> {3}<br />';
+        $args = [$this->getBrowser(), $this->getVersion(), $this->getUserAgent(), $this->getPlatform()->toString()];
+        foreach ($args as $key => $value) {
+            $template = str_replace(sprintf('{%d}', $key), $value, $template);
+        }
+        return $template;
     }
 
     /**
@@ -349,7 +350,15 @@ class Browser
      */
     public function isChromeFrame()
     {
-        return $this->userAgent->contains('chromeframe');
+        return $this->userAgentContains('chromeframe');
+    }
+
+    /**
+     * @param $value
+     * @return bool
+     */
+    protected function userAgentContains($value) {
+        return (strpos($this->userAgent, $value) !== false);
     }
 
     /**
@@ -426,7 +435,7 @@ class Browser
         if (!$version = $this->getVersionFromUserAgentString('amaya')) {
             return false;
         }
-        
+
         $this->setVersion($version);
         $this->setBrowser(self::BROWSER_AMAYA);
         return true;
@@ -438,7 +447,7 @@ class Browser
      */
     protected function checkBrowserAndroid()
     {
-        if (!$this->userAgent->contains('android')) {
+        if (!$this->userAgentContains('android')) {
             return false;
         }
 
@@ -449,7 +458,7 @@ class Browser
             $this->setVersion(reset($version));
         }
 
-        if ($this->userAgent->contains('mobile')) {
+        if ($this->userAgentContains('mobile')) {
             $this->setMobile(true);
         } else {
             $this->setTablet(true);
@@ -458,7 +467,7 @@ class Browser
         $this->setBrowser(self::BROWSER_ANDROID);
         return true;
     }
-    
+
     /**
      * Determine if the browser is the BingBot or not (last updated 2.0.0)
      * @return boolean True if the browser is the BingBot otherwise false
@@ -468,7 +477,7 @@ class Browser
         if (!$version = $this->getVersionFromUserAgentString('bingbot')) {
             return false;
         }
-        
+
         $this->setVersion($version);
         $this->setBrowser(self::BROWSER_BINGBOT);
         $this->setRobot(true);
@@ -503,13 +512,13 @@ class Browser
         if (!$version = $this->getVersionFromUserAgentString('chrome')) {
             return false;
         }
-        
+
         $this->setVersion($version);
         $this->setBrowser(self::BROWSER_CHROME);
 
         // Check if it's not on desktop
-        if ($this->userAgent->contains('android')) {
-            if ($this->userAgent->contains('mobile')) {
+        if ($this->userAgentContains('android')) {
+            if ($this->userAgentContains('mobile')) {
                 $this->setMobile(true);
             } else {
                 $this->setTablet(true);
@@ -527,7 +536,7 @@ class Browser
         if (!$version = $this->getVersionFromUserAgentString('curl')) {
             return false;
         }
-        
+
         $this->setVersion($version);
         $this->setBrowser(self::BROWSER_CURL);
         return true;
@@ -542,7 +551,7 @@ class Browser
         if (!$version = $this->getVersionFromUserAgentString('firebird')) {
             return false;
         }
-        
+
         $this->setVersion($version);
         $this->setBrowser(self::BROWSER_FIREBIRD);
         return true;
@@ -554,11 +563,11 @@ class Browser
      */
     protected function checkBrowserFirefox()
     {
-        if ($this->userAgent->contains('safari')) {
+        if ($this->userAgentContains('safari')) {
             return false;
         }
 
-        if (!$this->userAgent->contains('firefox')) {
+        if (!$this->userAgentContains('firefox')) {
             return false;
         }
 
@@ -569,8 +578,8 @@ class Browser
         $this->setBrowser(self::BROWSER_FIREFOX);
 
         // Check if it's not on desktop
-        if ($this->userAgent->contains('android')) {
-            if ($this->userAgent->contains('mobile')) {
+        if ($this->userAgentContains('android')) {
+            if ($this->userAgentContains('mobile')) {
                 $this->setMobile(true);
             } else {
                 $this->setTablet(true);
@@ -588,7 +597,7 @@ class Browser
         if (!$version = $this->getVersionFromUserAgentString('galeon')) {
             return false;
         }
-        
+
         $this->setVersion($version);
         $this->setBrowser(self::BROWSER_GALEON);
         return true;
@@ -603,7 +612,7 @@ class Browser
         if (!$version = $this->getVersionFromUserAgentString('googlebot')) {
             return false;
         }
-        
+
         $this->setVersion($version);
         $this->setBrowser(self::BROWSER_GOOGLEBOT);
         $this->setRobot(true);
@@ -616,7 +625,7 @@ class Browser
      */
     protected function checkBrowserIcab()
     {
-        if (!$this->userAgent->contains('icab')) {
+        if (!$this->userAgentContains('icab')) {
             return false;
         }
 
@@ -646,7 +655,7 @@ class Browser
         if (!$version = $this->getVersionFromUserAgentString('icecat')) {
             return false;
         }
-        
+
         $this->setVersion($version);
         $this->setBrowser(self::BROWSER_ICECAT);
         return true;
@@ -661,7 +670,7 @@ class Browser
         if (!$version = $this->getVersionFromUserAgentString('iceweasel')) {
             return false;
         }
-        
+
         $this->setVersion($version);
         $this->setBrowser(self::BROWSER_ICEWEASEL);
         return true;
@@ -674,13 +683,13 @@ class Browser
     protected function checkBrowserInternetExplorer()
     {
         //  Test for IE11
-        if ($this->userAgent->contains('trident/7.0; rv:11.0')) {
+        if ($this->userAgentContains('trident/7.0; rv:11.0')) {
             $this->setBrowser(self::BROWSER_IE);
             $this->setVersion('11.0');
             return true;
         }
         // Test for v1 - v1.5 IE
-        if ($this->userAgent->contains('microsoft internet explorer')) {
+        if ($this->userAgentContains('microsoft internet explorer')) {
             $this->setBrowser(self::BROWSER_IE);
             $this->setVersion('1.0');
 
@@ -691,9 +700,9 @@ class Browser
             return true;
         }
         // Test for versions > 1.5
-        if ($this->userAgent->contains('msie') && !$this->userAgent->contains('opera')) {
+        if ($this->userAgentContains('msie') && !$this->userAgentContains('opera')) {
             // See if the browser is the odd MSN Explorer
-            if ($this->userAgent->contains('msnb')) {
+            if ($this->userAgentContains('msnb')) {
                 $aresult = explode(' ', stristr(str_replace(';', '; ', $this->userAgent), 'msn'));
                 if (isset($aresult[1])) {
                     $this->setBrowser(self::BROWSER_MSN);
@@ -706,7 +715,7 @@ class Browser
             if (isset($aresult[1])) {
                 $this->setBrowser(self::BROWSER_IE);
                 $this->setVersion(str_replace(array('(', ')', ';'), '', $aresult[1]));
-                if ($this->userAgent->contains('iemobile')) {
+                if ($this->userAgentContains('iemobile')) {
                     $this->setBrowser(self::BROWSER_POCKET_IE);
                     $this->setMobile(true);
                 }
@@ -714,7 +723,7 @@ class Browser
             }
         }
         // Test for versions > IE 10
-        if ($this->userAgent->contains('trident')) {
+        if ($this->userAgentContains('trident')) {
             $this->setBrowser(self::BROWSER_IE);
             $result = explode('rv:', $this->userAgent);
             if (isset($result[1])) {
@@ -723,7 +732,7 @@ class Browser
             return true;
         }
         // Test for Pocket IE
-        if ($this->userAgent->contains('mspie') || $this->userAgent->contains('pocket')) {
+        if ($this->userAgentContains('mspie') || $this->userAgentContains('pocket')) {
             $aresult = explode(' ', stristr($this->userAgent, 'mspie'));
             if (isset($aresult[1])) {
                 $this->setPlatform(self::PLATFORM_WINDOWS_CE);
@@ -753,7 +762,7 @@ class Browser
         if (!$version = $this->getVersionFromUserAgentString('konqueror')) {
             return false;
         }
-        
+
         $this->setVersion($version);
         $this->setBrowser(self::BROWSER_KONQUEROR);
         return true;
@@ -768,7 +777,7 @@ class Browser
         if (!$version = $this->getVersionFromUserAgentString('lynx')) {
             return false;
         }
-        
+
         $this->setVersion($version);
         $this->setBrowser(self::BROWSER_LYNX);
         return true;
@@ -808,7 +817,7 @@ class Browser
         if (!$version = $this->getVersionFromUserAgentString('msnbot')) {
             return false;
         }
-        
+
         $this->setVersion($version);
         $this->setBrowser(self::BROWSER_MSNBOT);
         return true;
@@ -823,7 +832,7 @@ class Browser
         if (!$version = $this->getVersionFromUserAgentString('netpositive')) {
             return false;
         }
-        
+
         $this->setVersion($version);
         $this->setBrowser(self::BROWSER_NETPOSITIVE);
         return true;
@@ -836,8 +845,8 @@ class Browser
      */
     protected function checkBrowserNetscapeNavigator9Plus()
     {
-        if ($this->userAgent->contains('firefox')) {
-            if (!$this->userAgent->contains('navigator')) {
+        if ($this->userAgentContains('firefox')) {
+            if (!$this->userAgentContains('navigator')) {
                 return false;
             }
 
@@ -848,7 +857,7 @@ class Browser
                 return false;
             }
         } else {
-            if (!$this->userAgent->contains('netscape')) {
+            if (!$this->userAgentContains('netscape')) {
                 return false;
             }
 
@@ -859,7 +868,7 @@ class Browser
                 return false;
             }
         }
-        
+
         $this->setVersion(end($versions));
         $this->setBrowser(self::BROWSER_NETSCAPE_NAVIGATOR);
         return true;
@@ -1070,7 +1079,7 @@ class Browser
         if (!$version = $this->getVersionFromUserAgentString('wget')) {
             return false;
         }
-        
+
         $this->setVersion($version);
         $this->setBrowser(self::BROWSER_WGET);
         return true;
@@ -1213,55 +1222,55 @@ class Browser
      */
     protected function checkPlatform()
     {
-        if ($this->userAgent->contains('windows')) {
+        if ($this->userAgentContains('windows')) {
             return $this->setPlatform(self::PLATFORM_WINDOWS);
         }
-        if ($this->userAgent->contains('ipad')) {
+        if ($this->userAgentContains('ipad')) {
             return $this->setPlatform(self::PLATFORM_IPAD);
         }
-        if ($this->userAgent->contains('ipod')) {
+        if ($this->userAgentContains('ipod')) {
             return $this->setPlatform(self::PLATFORM_IPOD);
         }
-        if ($this->userAgent->contains('iphon')) {
+        if ($this->userAgentContains('iphon')) {
             return $this->setPlatform(self::PLATFORM_IPHONE);
         }
-        if ($this->userAgent->contains('mac')) {
+        if ($this->userAgentContains('mac')) {
             return $this->setPlatform(self::PLATFORM_APPLE);
         }
-        if ($this->userAgent->contains('android')) {
+        if ($this->userAgentContains('android')) {
             return $this->setPlatform(self::PLATFORM_ANDROID);
         }
-        if ($this->userAgent->contains('linux')) {
+        if ($this->userAgentContains('linux')) {
             return $this->setPlatform(self::PLATFORM_LINUX);
         }
-        if ($this->userAgent->contains('nokia')) {
+        if ($this->userAgentContains('nokia')) {
             return $this->setPlatform(self::PLATFORM_NOKIA);
         }
-        if ($this->userAgent->contains('blackberry')) {
+        if ($this->userAgentContains('blackberry')) {
             return $this->setPlatform(self::PLATFORM_BLACKBERRY);
         }
-        if ($this->userAgent->contains('freebsd')) {
+        if ($this->userAgentContains('freebsd')) {
             return $this->setPlatform(self::PLATFORM_FREEBSD);
         }
-        if ($this->userAgent->contains('openbsd')) {
+        if ($this->userAgentContains('openbsd')) {
             return $this->setPlatform(self::PLATFORM_OPENBSD);
         }
-        if ($this->userAgent->contains('netbsd')) {
+        if ($this->userAgentContains('netbsd')) {
             return $this->setPlatform(self::PLATFORM_NETBSD);
         }
-        if ($this->userAgent->contains('opensolaris')) {
+        if ($this->userAgentContains('opensolaris')) {
             return $this->setPlatform(self::PLATFORM_OPENSOLARIS);
         }
-        if ($this->userAgent->contains('sunos')) {
+        if ($this->userAgentContains('sunos')) {
             return $this->setPlatform(self::PLATFORM_SUNOS);
         }
-        if ($this->userAgent->contains('os\/2')) {
+        if ($this->userAgentContains('os\/2')) {
             return $this->setPlatform(self::PLATFORM_OS2);
         }
-        if ($this->userAgent->contains('beos')) {
+        if ($this->userAgentContains('beos')) {
             return $this->setPlatform(self::PLATFORM_BEOS);
         }
-        if ($this->userAgent->contains('win')) {
+        if ($this->userAgentContains('win')) {
             return $this->setPlatform(self::PLATFORM_WINDOWS);
         }
     }
@@ -1272,7 +1281,7 @@ class Browser
      */
     protected function checkForAol()
     {
-        if ($this->userAgent->contains('aol')) {
+        if ($this->userAgentContains('aol')) {
             $aversion = explode(' ', stristr($this->userAgent, 'aol'));
             if (isset($aversion[1])) {
                 $this->setAol(true);
@@ -1291,7 +1300,7 @@ class Browser
      */
     protected function getVersionFromUserAgentString($browserKey)
     {
-        if (!$this->userAgent->contains(strtolower($browserKey))) {
+        if (!$this->userAgentContains(strtolower($browserKey))) {
             return false;
         }
 
