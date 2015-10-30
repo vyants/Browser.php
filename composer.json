@@ -27,8 +27,7 @@
         "bin-dir": "bin"
     },
     "require": {
-        "php": ">=5.3",
-        "gemabit/string": "dev-master"
+        "php": ">=5.6",
     },
     "require-dev": {
         "symfony/var-dumper": "~2.6",
